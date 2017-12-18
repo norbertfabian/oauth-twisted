@@ -1,0 +1,2 @@
+SECRET_KEY: nejaky key
+DB: postgres connect string

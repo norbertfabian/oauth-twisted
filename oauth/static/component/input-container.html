@@ -1,0 +1,138 @@
+<link rel="import" href="../lib/polymer/polymer-element.html">
+
+<dom-module id="input-container">
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                --input-container--padding: 1rem;
+                --input-container--background-color: white;
+                --input-container--border-color: #eceeef;
+                --input-container--border-radius: 2px;
+                --input-container--color: #1e1e1e;
+
+                --timing-duration: 200ms;
+                --timing-fn: ease-out;
+            }
+
+            .input-container {
+                flex-grow: 1;
+                opacity: 1;
+                position: relative;
+            }
+
+            .input-container__wrap {
+                background-color: var(--input-container--background-color);
+                display: block;
+                position: relative;
+            }
+
+            .input-container__label {
+                cursor: text;
+                display: block;
+                opacity: .6;
+                position: absolute;
+                left: 1rem;
+                text-transform: uppercase;
+                top: 0;
+                white-space: nowrap;
+                z-index: 1;
+
+                transform: translateY(25%);
+                transition:
+                    color var(--timing-duration) var(--timing-fn),
+                    font-size var(--timing-duration) var(--timing-fn),
+                    opacity var(--timing-duration) var(--timing-fn),
+                    transform var(--timing-duration) var(--timing-fn);
+            }
+
+            .input-container__content {
+                background-color: transparent;
+                color: var(--input-container--color);
+                cursor: text;
+                display: flex;
+                border: var(--input-container--border-color) 1px solid;
+                border-radius: var(--input-container--border-radius);
+                flex: 1 0 auto;
+                min-height: 1rem;
+                position: relative;
+                z-index: 2;
+
+                transition: border-color var(--timing-duration) var(--timing-fn);
+            }
+
+            #input::slotted(input), #input::slotted(select), #input::slotted(textarea) {
+                background-color: transparent;
+                border: none;
+                display: block;
+                padding: calc(var(--input-container--padding) * .75) var(--input-container--padding) calc(var(--input-container--padding) * .25);
+                width: 100%;
+            }
+
+            #label::slotted(label) {
+                margin-bottom: 0;
+            }
+
+            .input-container--focus .input-container__label,
+            .input-container--has-value .input-container__label {
+                cursor: default;
+                font-size: 75%;
+                opacity: .4;
+                text-transform: uppercase;
+                transform: translateY(0);
+            }
+        </style>
+
+        <div class="input-container__container" id="container">
+            <span class="input-container__wrap">
+                <span class="input-container__label"><slot id="label" name="label"></slot></span>
+                <span class="input-container__content">
+                    <slot id="input" name="input"></slot>
+                </span>
+            </span>
+        </div>
+
+    </template>
+
+    <script>
+
+        class InputContainer extends Polymer.Element {
+            static get is() { return 'input-container'; }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                if (!this.input) return;
+                this._checkValue();
+
+                this.classList.add('input-container--ready');
+
+                this.input.addEventListener('focus', e => {
+                    this._checkValue();
+                    this.$.container.classList.add('input-container--focus');
+                });
+                this.input.addEventListener('blur', e => {
+                    this._checkValue();
+                    this.$.container.classList.remove('input-container--focus');
+                });
+            }
+
+            get input() {
+                const acceptedNodes = ['INPUT', 'SELECT', 'TEXTAREA'];
+
+                return this.$.input.assignedNodes().filter(n => ~acceptedNodes.indexOf(n.nodeName))[0];
+            }
+
+            _checkValue() {
+                if (!this.input) return;
+                const cl = this.$.container.classList;
+
+                cl[this.input.value ? 'add' : 'remove']('input-container--has-value');
+            }
+        }
+        window.customElements.define(InputContainer.is, InputContainer);
+
+    </script>
+</dom-module>
+

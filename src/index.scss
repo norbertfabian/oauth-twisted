@@ -1,0 +1,94 @@
+@import './variables';
+@import '../node_modules/webapp-style-core/src/index';
+
+$fa-allowed-icons: false;
+$fa-font-path: '/fonts';
+@import '../../node_modules/sass-font-awesome/font-awesome';
+
+
+@import 'component';
+
+
+.pg-head {
+    &__title {
+        display: flex;
+        align-items: center;
+    }
+
+    &__image {
+        margin-right: 1rem;
+    }
+}
+
+.pg-content {
+    min-height: calc(100vh - 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        color: $color-text;
+        font-size: 150%;
+        font-weight: 600;
+    }
+}
+
+.pg-foot {
+    box-shadow: inset 0 1px $gray-light-2;
+    color: $gray-light-1;
+    font-size: .75rem;
+    line-height: 1rem;
+    height: 2rem;
+    padding: .5rem 0;
+
+    p {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.pg-aside {
+    box-shadow: inset -1px 0 $gray-light-2;
+    display: flex;
+    align-items: center;
+    flex: 0 0 10rem;
+    margin-right: 1rem;
+    height: calc(100vh - 6rem);
+
+    @include media-breakpoint-down(sm) {
+        flex: 0 0 8rem;
+    }
+}
+
+.pg-nav {
+    &, a {
+        display: block;
+        width: 100%;
+    }
+
+    a {
+        cursor: pointer;
+        line-height: 1.5;
+        padding: .75rem 1rem;
+        text-align: right;
+        text-transform: uppercase;
+        transition: background-color $timing-duration $timing-fn;
+
+        &:link, &:visited, &:hover {
+            color: $gray-dark-1;
+        }
+
+        &:hover {
+            background-color: $gray-light-2;
+            text-decoration: none;
+        }
+
+        &.active {
+            box-shadow: inset 0 -1px $gray-light-2;
+        }
+    }
+}
+
+.pg-aside ~ .pg-main {
+    flex: 1 0 auto;
+}

@@ -1,0 +1,15 @@
+{
+    "name": "OAuth",
+    "short_name": "oauth",
+    "description": "Oauth client application",
+    "start_url": "./",
+    "display": "standalone",
+    "theme_color": "#00c5ff",
+    "background_color": "#ffffff",
+    "icons": [{
+            "src": "favicon.ico",
+            "sizes": "128x128",
+            "type": "image/x-icon"
+        }
+    ]
+}

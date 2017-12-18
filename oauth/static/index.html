@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>OAuth</title>
+        <!-- <meta name="description" content="OAuth">
+        <meta name="keywords" content=""> -->
+
+        <!-- <base href="/"> -->
+
+        <link rel="icon" href="favicon.ico">
+        <link rel="manifest" href="manifest.json">
+
+        <!-- See https://goo.gl/qRE0vM -->
+        <meta name="theme-color" content="#00c5ff">
+
+        <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="Webapp">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
+        <meta name="apple-mobile-web-app-title" content="OAuth">
+
+        <link rel="icon" sizes="128x128" href="favicon.ico">
+        <link rel="apple-touch-icon" href="favicon.ico">
+
+        <meta name="msapplication-TileImage" content="favicon.ico">
+        <meta name="msapplication-TileColor" content="#00c5ff">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <script>window.Polymer = { rootPath: '/' };</script>
+    </head>
+    <body>
+        <header class="pg-head">
+            <div class="container pg-head__container">
+                <h1 class="pg-head__title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pg-head__image" viewBox="0 0 70 36" style="width: 4rem"><title>Versatile, s.r.o.</title><path d="M205.54,49.31l-2.74,2.76L185.94,38,202.8,23.92l2.74,2.79L191.86,37.94Z" transform="translate(-185.94 -18)" style="fill:#00c5ff"></path><path d="M236.36,26.7l2.71-2.79L255.94,38,239.07,52.07l-2.71-2.76L250,38Z" transform="translate(-185.94 -18)" style="fill:#00c5ff"></path><polygon points="30.43 31 45.49 0 39.52 0 22.01 36 45.06 36 45.06 31 30.43 31" style="fill:#f60541"></polygon></svg>
+                    <span>OAuth</span>
+                </h1>
+            </div>
+        </header>
+
+        <main class="pg-content container container--xs">
+            <form class="p-y-4">
+                <h1>Přihlášení</h1>
+                <p>
+                    <input-container>
+                        <label for="name" slot="label">Uživatelské jméno</label>
+                        <input type="text" name="name" slot="input">
+                    </input-container>
+                </p>
+                <p>
+                    <input-container>
+                        <label for="password" slot="label">Heslo</label>
+                        <input type="password" name="password" slot="input">
+                    </input-container>
+                </p>
+                <p class="text-right">
+                    <button type="submit" class="btn">Přihlásit se</button>
+                </p>
+            </form>
+
+            <noscript>
+                Prosíme, zapněte si javascript pro tuto stránku.
+            </noscript>
+
+            <div id="notsupported" style="display: none;"></div>
+        </main>
+
+        <footer class="pg-foot">
+            <p>COPYRIGHT © 2016-2017 Versatile, s.r.o. | All rights reserved</p>
+        </footer>
+
+        <script>
+        (function() {
+            'use strict';
+            function create(type, innerHTML) {
+                var el = document.createElement(type);
+                el.innerHTML = innerHTML;
+                return el;
+            }
+
+            try {
+                var ns = document.getElementById('notsupported');
+
+                window.addEventListener('WebComponentsReady', function () {
+                    if (('customElements' in window && window.customElements.define)
+                        || ('registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template'))) {
+                        ns.parentNode && ns.parentNode.removeChild(ns);
+                    } else {
+                        document.body.style.opacity = 1;
+                        var MSG_HEADING = 'Váš prohlížeč již není podporován';
+                        var MSG_TEXT = 'Prosíme, spusťte si tento web v moderním prohlížeči, jako například Chrome, Firefox nebo Edge.';
+
+                        try {
+                            ns.appendChild(create('h1', MSG_HEADING));
+                            ns.appendChild(create('p', MSG_TEXT));
+                            ns.appendChild(create('p', '<a href="//outdatedbrowser.com/cs" target="_blank">Zobrazit alternativní prohlížeče</a>'));
+                        }
+                        catch (e) {
+                            alert([MSG_HEADING, MSG_TEXT].join(' '));
+                        }
+                        finally {
+                            ns.style.display = 'block';
+                            console.warn("Outdated browser");
+                        }
+                    }
+                });
+            }
+            catch (e) {
+                console.error(e);
+            }
+        })();
+        </script>
+        <script src="lib/webcomponentsjs/webcomponents-loader.js" async></script>
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="import" href="component/input-container.html">
+    </body>
+</html>

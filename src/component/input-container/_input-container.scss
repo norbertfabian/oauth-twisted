@@ -1,0 +1,210 @@
+/* Style for inputContainer component */
+
+@import 'input-container.variables';
+
+input-container:not(.input-container--ready) {
+    label {
+        display: block;
+    }
+
+    input, select, textarea {
+        background-color: $input-container--background-color;
+        border: $input-container--border-color 1px solid;
+        border-radius: $input-container--border-radius;
+        color: $input-container--color;
+        padding: $input-container--padding / 2;
+    }
+}
+
+.input-container {
+    input, select, textarea {
+        background-color: transparent;
+        border: none;
+        display: block;
+        padding: ($input-container--padding * .75) $input-container--padding ($input-container--padding * .25);
+        width: 100%;
+        max-width: 100%;
+    }
+
+    label {
+        margin-bottom: 0;
+    }
+}
+
+// input-container {
+//     display: block;
+//     opacity: 0;
+//     transition: opacity $timing-duration $timing-fn;
+// }
+
+// .input-container {
+//     flex-grow: 1;
+//     opacity: 1;
+
+//     .input {
+//         border: none;
+//         color: inherit;
+//         cursor: inherit;
+//         outline: none;
+//         display: block;
+//         @include padding-x(1rem);
+
+//         min-height: inherit;
+//         width: 100%;
+
+//         &[type=number] {
+//             text-align: right;
+//         }
+
+//         &:disabled {
+//             background-color: inherit;
+//         }
+//         &::-webkit-outer-spin-button,
+//         &::-webkit-inner-spin-button {
+//             -webkit-appearance: none;
+//             margin: 0;
+//         }
+
+//         &::placeholder {
+//             opacity: .4;
+//         }
+//     }
+
+//     &__label {
+//         cursor: text;
+//         display: block;
+//         opacity: .6;
+//         position: absolute;
+//         left: 1rem;
+//         top: $input-container--padding-top;
+//         z-index: 1;
+
+//         transform: translateY(-25%);
+//         transition:
+//             color $timing-duration $timing-fn,
+//             font-size $timing-duration $timing-fn,
+//             opacity $timing-duration $timing-fn,
+//             transform $timing-duration $timing-fn;
+
+//         label {
+//             margin: 0;
+//         }
+//     }
+
+//     &__content {
+//         background-color: $input-container--background-color;
+//         color: $input-container--color;
+//         cursor: text;
+//         display: flex;
+//         border: $input-container--border-color 1px solid;
+//         border-radius: $input-container--border-radius;
+//         flex: 1 0 auto;
+//         min-height: 1rem;
+//         @include padding-y($input-container--padding-top / 2);
+
+//         transition: border-color $timing-duration $timing-fn;
+//     }
+
+//     &--has-label &__content {
+//         @include padding-y($input-container--padding-top, 0);
+//     }
+//     &--has-unit .input {
+//         padding-right: .5rem;
+//     }
+
+//     &__messages {
+//         border-bottom-left-radius: $input-container--border-radius;
+//         border-bottom-right-radius: $input-container--border-radius;
+//         display: none;
+//         margin-top: -.05rem;
+//         padding: .3rem 1rem;
+//     }
+
+//     &__wrap {
+//         display: block;
+//         margin: 0;
+//         overflow: hidden;
+//         position: relative;
+//         width: 100%;
+//         z-index: 1;
+//     }
+
+//     &--focus &__label {
+//         @extend %input-container__label--focus;
+//     }
+//     &--focus &__content {
+//         border-color: $input-container--focus--border-color;
+//     }
+//     &--placeholder &__label {
+//         @extend %input-container__label--focus;
+//     }
+
+//     &--select &__label {
+//         @extend %input-container__label--focus;
+//     }
+//     &--select &__content {
+//         @include padding-y(0);
+
+//         &::after {
+//             content: '';
+//             cursor: inherit;
+//             display: block;
+//             width: 0;
+//             height: 0;
+//             border-left: .5rem solid transparent;
+//             border-right: .5rem solid transparent;
+
+//             border-top: .5rem solid currentColor;
+
+//             position: absolute;
+//             right: .5rem;
+//             top: 50%;
+//             transform: translateY(-50%);
+//         }
+//     }
+//     &--select .input {
+//         background-color: inherit;
+//         cursor: pointer;
+//         @include padding-y($input-container--padding-top / 2);
+//         -webkit-appearance: none;
+//     }
+//     &--select#{&}--has-label .input {
+//         @include padding-y(1rem, 0);
+//     }
+
+//     &--readonly &__content {
+//         border-style: dashed;
+//     }
+
+//     &--disabled &__label {
+//         opacity: .4;
+//     }
+//     &--disabled &__content {
+//         background-color: darken($input-container--background-color, 5%);
+//         color: rgba($input-container--color, .6);
+//         cursor: not-allowed;
+//     }
+
+//     &--not-empty &__label {
+//         @extend %input-container__label--focus;
+//     }
+
+//     &--invalid &__content {
+//         border-color: $color-danger;
+//     }
+//     &--invalid &__messages {
+//         @include content($color-danger);
+//         display: block;
+//         font-size: 75%;
+//     }
+// }
+
+// %input-container {
+//     &__label--focus {
+//         cursor: default;
+//         font-size: 75%;
+//         opacity: .4;
+//         text-transform: uppercase;
+//         transform: translateY(-75%);
+//     }
+// }
